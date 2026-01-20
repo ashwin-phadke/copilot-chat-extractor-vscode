@@ -27,7 +27,7 @@ This extension was created using Claude Opus 4.5.
 3. Browse your Copilot chat history
 4. Right-click to export or use the command palette
 
-## VSIX Installation
+## VSIX Installation 
 
 To install the extension from a `.vsix` file:
 
