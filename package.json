@@ -1,0 +1,207 @@
+{
+  "name": "copilot-chat-extractor",
+  "displayName": "Copilot Chat Extractor",
+  "description": "Export, search, and backup your GitHub Copilot chat history to Markdown, JSON, or HTML",
+  "version": "1.0.0",
+  "publisher": "community",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Data Science"
+  ],
+  "keywords": [
+    "copilot",
+    "chat",
+    "export",
+    "backup",
+    "history",
+    "markdown"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "icon": "media/icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "copilotChatExtractor.showChats",
+        "title": "Show Copilot Chat History",
+        "category": "Copilot Chat Extractor",
+        "icon": "$(history)"
+      },
+      {
+        "command": "copilotChatExtractor.exportSession",
+        "title": "Export Chat Session",
+        "category": "Copilot Chat Extractor",
+        "icon": "$(export)"
+      },
+      {
+        "command": "copilotChatExtractor.exportAll",
+        "title": "Export All Chat Sessions",
+        "category": "Copilot Chat Extractor",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "copilotChatExtractor.searchChats",
+        "title": "Search Chat History",
+        "category": "Copilot Chat Extractor",
+        "icon": "$(search)"
+      },
+      {
+        "command": "copilotChatExtractor.refresh",
+        "title": "Refresh Chat List",
+        "category": "Copilot Chat Extractor",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "copilotChatExtractor.openSession",
+        "title": "Open Chat Session",
+        "category": "Copilot Chat Extractor",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "copilotChatExtractor.exportRecent",
+        "title": "Export Recent Sessions",
+        "category": "Copilot Chat Extractor",
+        "icon": "$(clock)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "copilotChatExtractor",
+          "title": "Copilot Chat History",
+          "icon": "$(comment-discussion)"
+        }
+      ]
+    },
+    "views": {
+      "copilotChatExtractor": [
+        {
+          "id": "copilotChatSessions",
+          "name": "Chat Sessions",
+          "icon": "$(comment-discussion)",
+          "contextualTitle": "Copilot Chat History"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "copilotChatSessions",
+        "contents": "No Copilot chat sessions found.\n\nMake sure you have used GitHub Copilot Chat at least once.\n\n[Refresh](command:copilotChatExtractor.refresh)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "copilotChatExtractor.refresh",
+          "when": "view == copilotChatSessions",
+          "group": "navigation"
+        },
+        {
+          "command": "copilotChatExtractor.searchChats",
+          "when": "view == copilotChatSessions",
+          "group": "navigation"
+        },
+        {
+          "command": "copilotChatExtractor.exportAll",
+          "when": "view == copilotChatSessions",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "copilotChatExtractor.openSession",
+          "when": "view == copilotChatSessions && viewItem == chatSession",
+          "group": "inline"
+        },
+        {
+          "command": "copilotChatExtractor.exportSession",
+          "when": "view == copilotChatSessions && viewItem == chatSession",
+          "group": "inline"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "copilotChatExtractor.showChats",
+          "when": "true"
+        },
+        {
+          "command": "copilotChatExtractor.exportAll",
+          "when": "true"
+        },
+        {
+          "command": "copilotChatExtractor.searchChats",
+          "when": "true"
+        },
+        {
+          "command": "copilotChatExtractor.exportRecent",
+          "when": "true"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Copilot Chat Extractor",
+      "properties": {
+        "copilotChatExtractor.defaultExportFormat": {
+          "type": "string",
+          "default": "markdown",
+          "enum": [
+            "markdown",
+            "json",
+            "html"
+          ],
+          "enumDescriptions": [
+            "Export as Markdown (.md) - Clean, readable format",
+            "Export as JSON (.json) - Structured data for processing",
+            "Export as HTML (.html) - Beautiful web-viewable format"
+          ],
+          "description": "Default format for exporting chat sessions"
+        },
+        "copilotChatExtractor.defaultOutputDirectory": {
+          "type": "string",
+          "default": "",
+          "description": "Default directory for exported files. Leave empty to use Desktop/Copilot Chat Exports"
+        },
+        "copilotChatExtractor.includeDetailedInfo": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include detailed information (tool calls, etc.) in exports"
+        },
+        "copilotChatExtractor.maxSessionsInView": {
+          "type": "number",
+          "default": 100,
+          "description": "Maximum number of sessions to show in the tree view"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.0",
+    "@vscode/vsce": "^2.22.0"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/community/copilot-chat-extractor-vscode"
+  },
+  "license": "MIT"
+}
