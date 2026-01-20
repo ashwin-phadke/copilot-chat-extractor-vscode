@@ -27,6 +27,24 @@ This extension was created using Claude Opus 4.5.
 3. Browse your Copilot chat history
 4. Right-click to export or use the command palette
 
+## VSIX Installation
+
+To install the extension from a `.vsix` file:
+
+1. **Download the `.vsix` file**
+  - Get the latest release from the [GitHub Releases](https://github.com/your-repo/releases) page or your distribution source.
+2. **Open VS Code**
+3. **Open the Command Palette** (`Ctrl+Shift+P` / `Cmd+Shift+P`)
+4. Type and select `Extensions: Install from VSIX...`
+5. Browse to the downloaded `.vsix` file and select it
+6. Wait for the extension to install, then reload VS Code if prompted
+
+### Troubleshooting VSIX Installation
+
+- If you see a warning about "extension not trusted" or "not signed," verify the source of your `.vsix` file.
+- If installation fails, ensure you have the correct VS Code version (see badge above) and permissions to install extensions.
+- For more help, see the [VS Code docs on installing extensions](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix).
+
 ## Commands
 
 Access via Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`):
