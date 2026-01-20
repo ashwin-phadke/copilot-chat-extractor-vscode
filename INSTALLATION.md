@@ -1,3 +1,20 @@
+## Install from VSIX File
+
+If you have a packaged `.vsix` file, you can install the extension in VS Code as follows:
+
+1. Open Visual Studio Code.
+2. Go to the Extensions view (Ctrl+Shift+X).
+3. Click the three-dot menu (⋮) in the top-right corner and select **Install from VSIX...**
+4. Browse to your `.vsix` file (e.g., `copilot-chat-extractor-1.0.0.vsix`) and select it.
+5. Wait for the installation to complete and reload VS Code if prompted.
+
+Alternatively, you can install from the command line:
+
+```sh
+code --install-extension copilot-chat-extractor-1.0.0.vsix
+```
+
+Replace the filename with your actual VSIX file name if different.
 # Installation Guide
 
 This guide will help you install and set up the Copilot Chat Extractor VS Code extension.

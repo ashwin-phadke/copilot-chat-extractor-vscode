@@ -12,6 +12,9 @@ yarn-error.log*
 dist/
 build/
 
+# VS Code extension build output
+out/
+
 # VS Code settings
 .vscode/
 
