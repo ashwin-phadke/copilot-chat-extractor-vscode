@@ -32,11 +32,11 @@ jobs:
           draft: false
           prerelease: false
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.VSIX_RELEASE_TOKEN }}
 
       - name: Upload VSIX to Release
         uses: softprops/action-gh-release@v2
         with:
           files: '*.vsix'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.VSIX_RELEASE_TOKEN }}
